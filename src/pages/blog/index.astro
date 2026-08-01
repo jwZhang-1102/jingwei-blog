@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import PostList from '../../components/PostList.astro';
+import { SITE_DESCRIPTION } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title="文章" description={SITE_DESCRIPTION} />
+	</head>
+	<body class="site-body">
+		<Header />
+		<main class="page-shell posts-page">
+			<header class="page-header">
+				<h1>文章</h1>
+				<p>关于软件、系统，以及我做过的一些事。</p>
+			</header>
+			<PostList posts={posts} />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.site-body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	.posts-page {
+		padding: var(--space-7) 0 var(--space-8);
+	}
+
+	.page-header {
+		margin-bottom: var(--space-6);
+		max-width: var(--measure);
+	}
+
+	.page-header h1 {
+		margin: 0 0 var(--space-3);
+		font-family: var(--font-display);
+		font-size: var(--fs-h1);
+	}
+
+	.page-header p {
+		margin: 0;
+		color: var(--color-text-secondary);
+	}
+</style>

@@ -1,0 +1,124 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead
+			title="关于"
+			description="关于 Jingwei：软件工程学生，关注后端系统、多端联调与把项目真正做完。"
+		/>
+	</head>
+	<body class="site-body">
+		<Header />
+		<main class="page-shell about-page">
+			<article class="measure about-article">
+				<header class="about-header">
+					<h1>关于</h1>
+					<p class="about-lead">
+						软件工程学生，关注后端系统、多端联调，以及把工具真正交付可用。
+					</p>
+				</header>
+
+				<section>
+					<p>
+						服务端主要使用 Java 与 Spring Boot，也会参与微信小程序、HTTP/TCP 联调，以及边缘侧脚本与工具。我更在意接口是否清晰、问题能否闭环，以及从代码到可演示结果的完整链路。
+					</p>
+					<p>
+						这个站点用来放笔记与构建日志，记录做项目时学到的东西。
+					</p>
+				</section>
+
+				<section class="about-links" aria-labelledby="links-heading">
+					<h2 id="links-heading">链接</h2>
+					<ul>
+						<li>
+							<a href="/blog">阅读文章</a>
+						</li>
+						<li>
+							<a href="mailto:23301023@bjtu.edu.cn">邮箱</a>
+						</li>
+					</ul>
+				</section>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.site-body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	.about-page {
+		padding: var(--space-7) 0 var(--space-8);
+	}
+
+	.about-article {
+		background: var(--color-bg-elevated);
+		border: var(--border-w) solid var(--color-border);
+		padding: var(--space-7) var(--space-6);
+	}
+
+	.about-header {
+		margin-bottom: var(--space-6);
+		padding-bottom: var(--space-5);
+		border-bottom: var(--border-w) solid var(--color-border);
+	}
+
+	.about-header h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: var(--fs-h1);
+	}
+
+	.about-lead {
+		margin: var(--space-4) 0 0;
+		color: var(--color-text-secondary);
+		font-size: clamp(1.05rem, 2vw, 1.2rem);
+		line-height: var(--lh-ui);
+	}
+
+	.about-links {
+		margin-top: var(--space-7);
+		padding-top: var(--space-5);
+		border-top: var(--border-w) solid var(--color-border);
+	}
+
+	.about-links h2 {
+		margin: 0 0 var(--space-3);
+		font-size: var(--fs-h3);
+	}
+
+	.about-links ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.about-links a {
+		font-weight: var(--fw-medium);
+		text-decoration: none;
+	}
+
+	.about-links a:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 640px) {
+		.about-article {
+			padding: var(--space-5) var(--space-4);
+			border-left: none;
+			border-right: none;
+		}
+	}
+</style>

@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PostList from '../components/PostList.astro';
+import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 5);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="site-body">
+		<Header />
+		<main>
+			<section class="hero" aria-label="介绍">
+				<div class="grid-texture" aria-hidden="true"></div>
+				<div class="page-shell hero-inner">
+					<p class="hero-kicker">个人站点</p>
+					<h1 class="hero-brand">{SITE_TITLE}</h1>
+					<p class="hero-tagline">{SITE_TAGLINE}</p>
+					<div class="hero-actions">
+						<a class="btn" href="/blog">阅读文章</a>
+						<a class="btn btn--ghost" href="/about">关于我</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="page-shell recent" aria-labelledby="recent-heading">
+				<div class="section-head">
+					<h2 id="recent-heading">最近文章</h2>
+					<a class="section-link" href="/blog">查看全部</a>
+				</div>
+				<PostList posts={posts} />
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.site-body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	.hero {
+		position: relative;
+		min-height: calc(100vh - var(--header-h));
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+		border-bottom: var(--border-w) solid var(--color-border);
+	}
+
+	.hero-inner {
+		position: relative;
+		z-index: 1;
+		padding: var(--space-8) 0;
+	}
+
+	.hero-kicker {
+		margin: 0 0 var(--space-3);
+		font-family: var(--font-mono);
+		font-size: var(--fs-small);
+		letter-spacing: 0.08em;
+		color: var(--color-accent-2);
+	}
+
+	.recent {
+		padding: var(--space-8) 0;
+	}
+
+	.section-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--space-4);
+		margin-bottom: var(--space-5);
+	}
+
+	.section-head h2 {
+		margin: 0;
+		font-size: var(--fs-h2);
+	}
+
+	.section-link {
+		font-size: var(--fs-small);
+		font-weight: var(--fw-medium);
+		text-decoration: none;
+	}
+
+	.section-link:hover {
+		text-decoration: underline;
+	}
+</style>

@@ -1,0 +1,110 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="post-list">
+	{
+		posts.map((post) => (
+			<li>
+				<a class="post-item" href={`/blog/${post.id}/`}>
+					<span class="post-date">
+						<FormattedDate date={post.data.pubDate} />
+					</span>
+					<span class="post-copy">
+						<span class="post-title">{post.data.title}</span>
+						<span class="post-excerpt">{post.data.description}</span>
+					</span>
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.post-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.post-list li + li {
+		border-top: var(--border-w) solid var(--color-border);
+	}
+
+	.post-item {
+		position: relative;
+		display: grid;
+		grid-template-columns: 7.5rem 1fr;
+		gap: var(--space-5);
+		padding: var(--space-5) 0 var(--space-5) var(--space-4);
+		text-decoration: none;
+		color: inherit;
+		transition: background-color var(--dur-2) var(--ease-out);
+	}
+
+	.post-item::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: var(--space-5);
+		bottom: var(--space-5);
+		width: 2px;
+		background: var(--color-accent);
+		transform: scaleY(0);
+		transform-origin: center;
+		transition: transform var(--dur-2) var(--ease-out);
+	}
+
+	.post-item:hover::before,
+	.post-item:focus-visible::before {
+		transform: scaleY(1);
+	}
+
+	.post-item:hover .post-title,
+	.post-item:focus-visible .post-title {
+		color: var(--color-accent);
+	}
+
+	.post-date {
+		font-family: var(--font-mono);
+		font-size: var(--fs-small);
+		color: var(--color-accent-2);
+		line-height: var(--lh-ui);
+		padding-top: 0.2rem;
+	}
+
+	.post-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		min-width: 0;
+	}
+
+	.post-title {
+		font-size: var(--fs-h3);
+		font-weight: var(--fw-semibold);
+		line-height: var(--lh-tight);
+		color: var(--color-text);
+		transition: color var(--dur-1) var(--ease-out);
+	}
+
+	.post-excerpt {
+		font-size: var(--fs-body);
+		line-height: var(--lh-ui);
+		color: var(--color-text-secondary);
+	}
+
+	@media (max-width: 640px) {
+		.post-item {
+			grid-template-columns: 1fr;
+			gap: var(--space-2);
+		}
+	}
+</style>
