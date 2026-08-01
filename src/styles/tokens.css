@@ -50,9 +50,10 @@
 	--space-7: 3rem;
 	--space-8: 4.5rem;
 
-	--measure: 40rem;
-	--page-max: 68rem;
-	--gutter: clamp(1rem, 4vw, 2rem);
+	/* 列表/关于等短文仍用 measure；文章页走 page-max 铺满 */
+	--measure: 48rem;
+	--page-max: min(92rem, 100%);
+	--gutter: clamp(1rem, 3.5vw, 3rem);
 	--header-h: 3.5rem;
 
 	/* Radius / border / shadow */

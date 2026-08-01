@@ -18,7 +18,7 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 	<body class="site-body">
 		<Header />
 		<main class="page-shell post-main">
-			<article class="measure post-article">
+			<article class="post-article">
 				<header class="post-header">
 					<p class="post-meta">
 						<FormattedDate date={pubDate} />
@@ -57,9 +57,10 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 	}
 
 	.post-article {
+		width: 100%;
 		background: var(--color-bg-elevated);
 		border: var(--border-w) solid var(--color-border);
-		padding: var(--space-7) var(--space-6);
+		padding: var(--space-7) clamp(var(--space-5), 4vw, var(--space-7));
 	}
 
 	.post-header {

@@ -155,7 +155,8 @@ td {
 }
 
 .page-shell {
-	width: min(100% - 2 * var(--gutter), var(--page-max));
+	width: calc(100% - 2 * var(--gutter));
+	max-width: var(--page-max);
 	margin-inline: auto;
 }
 
