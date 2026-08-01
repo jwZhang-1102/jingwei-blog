@@ -1,7 +1,7 @@
 ---
-title: 'LensFocus 约拍小程序：从接口到联调上线'
-description: '学期综合实训 LensFocus：微信小程序 + Spring Boot 约拍平台。从产品痛点、JWT/Redis 鉴权、泛型 CRUD 发帖，到混合联调、契约对齐与真机排障。'
-pubDate: 'Aug 01 2026'
+title: 'LensFocus 约拍小程序：从 0 到 1 的设计与落地'
+description: '学期综合实训 LensFocus：组内从 0 到 1 设计的约拍平台（微信小程序 + Spring Boot）。从产品痛点与立项，到鉴权、发帖链路、混合联调与真机排障。'
+pubDate: 'Jun 28 2026'
 ---
 
 ## 写在前面
